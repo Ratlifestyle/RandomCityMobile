@@ -1,12 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
+import { DrawerActions, NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './components/Home';
+import DetailSession from './components/DetailSession';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator drawerContent={(props)=>{
+        return (
+          <View>
+            <Text>gros caca test</Text>
+          </View>
+        )
+      }} useLegacyImplementation initialRouteName='Home'>
+        <Drawer.Screen name='Home' component={Home}></Drawer.Screen>
+        <Drawer.Screen name='DetailSession' component={DetailSession}></Drawer.Screen>
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
