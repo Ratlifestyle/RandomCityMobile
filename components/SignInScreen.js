@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as React from 'react';
 import * as App from '../App';
 
-function SignInScreen() {
+function SignInScreen({ navigation }) {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    console.log(App.AuthContext )
+
     const { signIn } = React.useContext(App.AuthContext);
 
     return (
@@ -22,6 +22,7 @@ function SignInScreen() {
           secureTextEntry
         />
         <Button title="Sign in" onPress={() => signIn({ username, password })} />
+        <Button title="Sign up" onPress={() => navigation.navigate('SignUp')}/>
       </View>
     );
   }

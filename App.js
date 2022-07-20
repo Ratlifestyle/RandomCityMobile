@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './components/Home';
 import SignInScreen from './components/SignInScreen'
-import DetailSession from './components/DetailSession';
 import * as SecureStore from 'expo-secure-store';
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import SignUpScreen from './components/SignUpScreen';
 
 
 export const AuthContext = React.createContext();
@@ -70,17 +70,19 @@ export default function App({ navigation }) {
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
-
+        
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
       signOut: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async (data) => {
+        console.log(data)
+        data.setValidPass(false)
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      //  dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
     }),
     []
@@ -89,13 +91,16 @@ export default function App({ navigation }) {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-      <Stack.Navigator>
         {state.userToken == null ? (
-          <Stack.Screen name="SignIn" component={SignInScreen}></Stack.Screen>
+          <Stack.Navigator>
+            <Stack.Screen name="SignIn" component={SignInScreen}/>
+            <Stack.Screen name="SignUp" component={SignUpScreen}/>
+          </Stack.Navigator>
         ) : (
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+          </Stack.Navigator>
         )}
-      </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
   );
