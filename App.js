@@ -6,7 +6,7 @@ import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import SignUpScreen from './components/SignUpScreen';
-
+import { URLAPI } from './global/constants';
 
 export const AuthContext = React.createContext();
 const Stack = createNativeStackNavigator();
@@ -76,7 +76,36 @@ export default function App({ navigation }) {
       signOut: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async (data) => {
         console.log(data)
-        data.setValidPass(false)
+        if(data.password == data.confirmPass){
+          fetch(URLAPI + '/user/register', {
+            method: 'POST',
+            mode: "no-cors",
+            headers: {
+              Accept: 'application/json',
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              login: data.login,
+              password: data.password,
+              first_name: data.firstName,
+              last_name: data.lastName,
+              mail: data.mail,
+              pseudo: data.pseudo
+            })
+          }).then((response) => {
+            if(response.ok){
+              dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });  
+
+            }else{
+              throw new Error('something went wrong')
+            }
+          }).catch((error) => {
+            console.log('aaaa')
+            console.log(error)
+          })
+        }else{
+          data.setValidPass()
+        }
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore`

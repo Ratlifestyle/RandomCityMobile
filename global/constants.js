@@ -1,0 +1,1 @@
+export var URLAPI = 'http://localhost:8000'

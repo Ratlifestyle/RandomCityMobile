@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as React from 'react';
 import * as App from '../App';
+import { URLAPI } from '../global/constants';
 
 function SignUpScreen() {
-    const [username, setUsername] = React.useState('');
+    const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPass, setConfirmPass] = React.useState('');
     const [validPass, setValidPass] = React.useState(true);
@@ -13,12 +14,28 @@ function SignUpScreen() {
     const [pseudo, setPseudo] = React.useState('');
     const { signUp } = React.useContext(App.AuthContext);
 
+    const checkIfValidPseudo = (pseudo) => {
+      console.log(pseudo)
+      const url = URLAPI + '/user/validPseudo/'+pseudo
+      console.log(url)
+      fetch(url,{
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      }).then(result=>{
+          console.log("aaa")
+          result.json().then(data=>{console.log(data)})
+      })
+    }
+
     return (
       <View>
         <TextInput
-          placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
+          placeholder="login"
+          value={login}
+          onChangeText={setLogin}
         />
         <TextInput
           placeholder="Password"
@@ -51,9 +68,12 @@ function SignUpScreen() {
         <TextInput
           placeholder="Pseudo"
           value={pseudo}
-          onChangeText={setPseudo}
+          onChangeText={(pseudo)=>{
+            setPseudo(pseudo)
+            checkIfValidPseudo(pseudo)
+          }}
         />
-        <Button title="Sign up" onPress={() => signUp({ username, password, confirmPass, firstName, lastName, mail, pseudo, setValidPass })} />
+        <Button title="Sign up" onPress={() => signUp({ login, password, confirmPass, firstName, lastName, mail, pseudo, setValidPass })} />
       </View>
     );
   }
