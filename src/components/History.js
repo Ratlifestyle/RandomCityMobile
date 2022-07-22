@@ -1,12 +1,11 @@
 import { View, Text } from "react-native-web";
 
-
-function Home({ navigation }){
+function History({ navigation }){
     return (
         <View>
-            <Text>test main</Text>
+            <Text>Coming soon ...</Text>
         </View>
     )
 }
 
-export default Home;
+export default History;
