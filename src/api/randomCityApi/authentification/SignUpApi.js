@@ -22,12 +22,15 @@ export async function SignUp(data){
             "Content-type": "application/json",
         },
         body: JSON.stringify({
-            login: data.login,
+            mail: data.mail,
             password: data.password,
             first_name: data.firstName,
             last_name: data.lastName,
-            mail: data.mail,
             pseudo: data.pseudo,
+        })
+    }).then(async (response) => {
+        return response.json().then((data) => {
+            return data
         })
     })
 }

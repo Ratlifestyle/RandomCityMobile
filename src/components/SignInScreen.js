@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as App from '../App';
 
 function SignInScreen({ navigation }) {
-    const [login, setLogin] = React.useState('');
+    const [mail, setMail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const { signIn } = React.useContext(App.AuthContext);
@@ -12,8 +12,8 @@ function SignInScreen({ navigation }) {
       <View>
         <TextInput
           placeholder="Login"
-          value={login}
-          onChangeText={setLogin}
+          value={mail}
+          onChangeText={setMail}
         />
         <TextInput
           placeholder="Password"
@@ -21,7 +21,7 @@ function SignInScreen({ navigation }) {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title="Sign in" onPress={() => signIn({ login, password })} />
+        <Button title="Sign in" onPress={() => signIn({ mail, password })} />
         <Button title="Sign up" onPress={() => navigation.navigate('SignUp')}/>
       </View>
     );

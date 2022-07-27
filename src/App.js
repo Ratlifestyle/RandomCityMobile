@@ -80,6 +80,7 @@ export default function App({ navigation }) {
                 signIn(data)
                     .then((response) => {
                         if (response.ok) {
+                            console.log(response)
                             dispatch({
                                 type: "SIGN_IN",
                                 token: "dummy-auth-token",
@@ -98,7 +99,8 @@ export default function App({ navigation }) {
                 if (data.password == data.confirmPass) {
                     SignUp(data)
                         .then((response) => {
-                            if (response.ok) {
+                            console.log(response)
+                            if (response.status_code == 201) {
                                 dispatch({
                                     type: "SIGN_IN",
                                     token: "dummy-auth-token",
