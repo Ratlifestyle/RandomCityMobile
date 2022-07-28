@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as React from 'react';
 import * as App from '../App';
+import { styles } from '../styles/SignInScreenStyles';
+import TextInputSigns from "./atoms/SignsScreens/TextInputSigns";
 
 function SignInScreen({ navigation }) {
     const [mail, setMail] = React.useState('');
@@ -9,13 +11,13 @@ function SignInScreen({ navigation }) {
     const { signIn } = React.useContext(App.AuthContext);
 
     return (
-      <View>
-        <TextInput
-          placeholder="Login"
+      <View style={styles.formView}>
+        <TextInputSigns
+          placeholder="mail"
           value={mail}
           onChangeText={setMail}
         />
-        <TextInput
+        <TextInputSigns
           placeholder="Password"
           value={password}
           onChangeText={setPassword}

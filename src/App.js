@@ -79,11 +79,10 @@ export default function App({ navigation }) {
 
                 signIn(data)
                     .then((response) => {
-                        if (response.ok) {
-                            console.log(response)
+                        if (response.status_code==200) {
                             dispatch({
                                 type: "SIGN_IN",
-                                token: "dummy-auth-token",
+                                token: response.auth_token,
                             });
                         } else {
                             throw new Error("Something went wrong");
@@ -99,11 +98,10 @@ export default function App({ navigation }) {
                 if (data.password == data.confirmPass) {
                     SignUp(data)
                         .then((response) => {
-                            console.log(response)
                             if (response.status_code == 201) {
                                 dispatch({
                                     type: "SIGN_IN",
-                                    token: "dummy-auth-token",
+                                    token: response.auth_token,
                                 });
                             } else {
                                 throw new Error("something went wrong");
