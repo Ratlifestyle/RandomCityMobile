@@ -3,7 +3,7 @@ import * as React from "react";
 import * as App from "../App";
 import { URLAPI } from "../global/constants";
 import { styles } from "../styles/SignUpScreenStyles";
-import TextInputSignUp from "./atoms/SignUpScreen/TextInputSignUp";
+import TextInputSigns from "./atoms/SignsScreens/TextInputSigns";
 import { checkIfValidPseudo } from "../api/randomCityApi/authentification/SignUpApi";
 
 function SignUpScreen() {
@@ -20,37 +20,37 @@ function SignUpScreen() {
 
     return (
         <View style={styles.formView}>
-            <TextInputSignUp
+            <TextInputSigns
                 placeholder="Mail"
                 value={mail}
                 onChangeText={setMail}
             />
-            <TextInputSignUp
+            <TextInputSigns
                 placeholder="Password"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
                 style={!validPass ? styles.invalidInput : null}
             />
-            <TextInputSignUp
+            <TextInputSigns
                 placeholder="Confirm password"
                 value={confirmPass}
                 onChangeText={setConfirmPass}
                 secureTextEntry
             />
-            <TextInputSignUp
+            <TextInputSigns
                 placeholder="First name"
                 value={firstName}
                 onChangeText={setFirstName}
             />
-            <TextInputSignUp
+            <TextInputSigns
                 placeholder="Last name"
                 value={lastName}
                 onChangeText={setLastName}
             />
 
             <View>
-                <TextInputSignUp
+                <TextInputSigns
                     placeholder="Pseudo"
                     value={pseudo}
                     onChangeText={(pseudo) => {
