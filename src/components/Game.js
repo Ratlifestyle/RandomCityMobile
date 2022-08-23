@@ -1,4 +1,4 @@
-import { View, Text, Button } from "react-native-web";
+import { View, Text, Button } from "react-native";
 
 
 function startSession(){

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native-web";
+import { View, Text } from "react-native";
 
 function Success({ navigation }){
     return (

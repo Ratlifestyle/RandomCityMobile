@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     invalidInput: {
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textInput:{
-        marginTop: '5px',
-        marginBottom: '5px'
+        marginTop: 5,
+        marginBottom: 5
     }
   });
