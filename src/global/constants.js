@@ -1,1 +1,1 @@
-export var URLAPI = 'http://192.168.0.23:5000'
+export var URLAPI = 'https://random-city-game.herokuapp.com'
