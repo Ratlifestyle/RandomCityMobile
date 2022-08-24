@@ -29,6 +29,7 @@
     "web": {
       "favicon": "./src/assets/images/favicon.png",
       "build": { "babel": { "include": [ "@ptomasroos/react-native-multi-slider", "react-native-maps" ] }}
-    }
+    },
+    "plugins": ["./src/android-manifest.plugin.js"]
   }
 }

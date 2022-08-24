@@ -1,12 +1,14 @@
 import { View, Text, Button, StyleSheet } from "react-native";
-import * as App from "../App";
 import * as React from "react";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
+import { startGameSession } from "../api/randomCityApi/gameSession/gameSessionControl";
 
 function GameStart({ navigation }) {
     const [gameState, setGameState] = React.useState("");
     const [markerLeftState, setMarkerLeftState] = React.useState(30);
     const [markerRightState, setMarkerRightState] = React.useState(50);
+    const [currentSession, setCurrentSession] = React.useState('');
+
 
     switch (gameState) {
         case "":
@@ -44,7 +46,9 @@ function GameStart({ navigation }) {
                     <Button
                         title="Demarrer"
                         onPress={() => {
-                            setGameState("confirmingCity");
+                            startGameSession(markerLeftState, markerRightState).then((data) => {
+                                setCurrentSession(data.result);
+                            })
                         }}
                     />
                 </View>
@@ -53,7 +57,7 @@ function GameStart({ navigation }) {
             return (
                 <View style={styles.container}>
                     <Text>Choix de la ville</Text>
-                    <Text>Ville a recuperer de la requete</Text>
+                    <Text>currentSession.ville.name</Text>
                     <View>
                         <Button
                             title="Demarrer"

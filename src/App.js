@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import GameStart from "./components/GameStart";
 import SignInScreen from "./components/SignInScreen";
-import * as SecureStore from "expo-secure-store";
+import { Save, GetValueFor, DeleteValueFor } from "./Storage";
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,6 +12,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import History from "./components/History";
 import Success from "./components/Success";
 import Options from "./components/Options";
+import RNLocation from 'react-native-location';
+
 
 export const AuthContext = React.createContext();
 export const GameContext = React.createContext();
@@ -19,10 +21,11 @@ export const GameContext = React.createContext();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function App({ navigation }) {
-    
+RNLocation.configure({
+    distanceFilter: null
+   })
 
-    const [gameState, setGameState] = React.useState('')
+export default function App({ navigation }) {
 
     const [state, dispatch] = React.useReducer(
         (prevState, action) => {
@@ -82,7 +85,6 @@ export default function App({ navigation }) {
                 // We will also need to handle errors if sign in failed
                 // After getting token, we need to persist the token using `SecureStore`
                 // In the example, we'll use a dummy token
-
                 signIn(data)
                     .then((response) => {
                         if (response.status_code==200) {
@@ -90,6 +92,7 @@ export default function App({ navigation }) {
                                 type: "SIGN_IN",
                                 token: response.auth_token,
                             });
+                            Save('userToken', response.auth_token);
                         } else {
                             throw new Error("Something went wrong");
                         }
@@ -98,7 +101,10 @@ export default function App({ navigation }) {
                         console.log(error);
                     });
             },
-            signOut: () => dispatch({ type: "SIGN_OUT" }),
+            signOut: () => {
+                dispatch({ type: "SIGN_OUT" });
+                DeleteValueFor(userToken)
+        },
             signUp: async (data) => {
                 console.log(data);
                 if (data.password == data.confirmPass) {
@@ -109,6 +115,7 @@ export default function App({ navigation }) {
                                     type: "SIGN_IN",
                                     token: response.auth_token,
                                 });
+                                Save('userToken', response.auth_token);
                             } else {
                                 throw new Error("something went wrong");
                             }
