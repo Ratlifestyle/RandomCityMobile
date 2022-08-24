@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import Game from "./components/Game";
+import GameStart from "./components/GameStart";
 import SignInScreen from "./components/SignInScreen";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
@@ -14,10 +14,16 @@ import Success from "./components/Success";
 import Options from "./components/Options";
 
 export const AuthContext = React.createContext();
+export const GameContext = React.createContext();
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App({ navigation }) {
+    
+
+    const [gameState, setGameState] = React.useState('')
+
     const [state, dispatch] = React.useReducer(
         (prevState, action) => {
             switch (action.type) {
@@ -134,7 +140,7 @@ export default function App({ navigation }) {
                     </Stack.Navigator>
                 ) : (
                     <Tab.Navigator>
-                        <Tab.Screen name="Game" component={Game} />
+                        <Tab.Screen name="GameStart" component={GameStart} />
                         <Tab.Screen name="History" component={History} />
                         <Tab.Screen name="Success" component={Success} />
                         <Tab.Screen name="Options" component={Options}/>

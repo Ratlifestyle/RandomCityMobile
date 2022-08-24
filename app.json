@@ -27,7 +27,8 @@
       }
     },
     "web": {
-      "favicon": "./src/assets/images/favicon.png"
+      "favicon": "./src/assets/images/favicon.png",
+      "build": { "babel": { "include": [ "@ptomasroos/react-native-multi-slider", "react-native-maps" ] }}
     }
   }
 }
