@@ -1,17 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import GameStart from "./src/components/GameStart";
-import SignInScreen from "./src/components/SignInScreen";
+import GameStart from "./components/GameStart";
+import SignInScreen from "./components/SignInScreen";
 import { Save, GetValueFor, DeleteValueFor } from "./src/Storage";
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import SignUpScreen from "./src/components/SignUpScreen";
-import { signIn } from "./src/api/randomCityApi/authentification/SignInApi";
-import { SignUp } from "./src/api/randomCityApi/authentification/SignUpApi";
+import SignUpScreen from "./components/SignUpScreen";
+import { signIn } from "./api/randomCityApi/authentification/SignInApi";
+import { SignUp } from "./api/randomCityApi/authentification/SignUpApi";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import History from "./src/components/History";
-import Success from "./src/components/Success";
-import Options from "./src/components/Options";
+import History from "./components/History";
+import Success from "./components/Success";
+import Options from "./components/Options";
 import RNLocation from 'react-native-location';
 
 
