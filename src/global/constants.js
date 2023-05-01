@@ -1,1 +1,1 @@
-export var URLAPI = 'http://192.168.0.23:5000'
+export const URLAPI = 'localhost:5000'
