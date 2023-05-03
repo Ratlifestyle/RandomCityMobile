@@ -1,11 +1,11 @@
-import { View, Text } from "react-native-web";
+import { View, Text } from 'react-native'
 
-function Success({ navigation }){
-    return (
-        <View>
-            <Text>Coming soon ...</Text>
-        </View>
-    )
+function Success ({ navigation }) {
+  return (
+    <View>
+      <Text>Coming soon ...</Text>
+    </View>
+  )
 }
 
-export default Success;
+export default Success

@@ -1,11 +1,11 @@
-import { View, Text } from "react-native";
+import { View, Text } from 'react-native'
 
-function Options({ navigation }){
-    return (
-        <View>
-            <Text>Coming soon ...</Text>
-        </View>
-    )
+function Options ({ navigation }) {
+  return (
+    <View>
+      <Text>Coming soon ...</Text>
+    </View>
+  )
 }
 
-export default Options;
+export default Options

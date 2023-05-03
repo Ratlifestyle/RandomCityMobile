@@ -8,7 +8,7 @@ export async function signIn (data) {
       'Content-type': 'application/json'
     },
     body: JSON.stringify({
-      mail: data.mail,
+      mail: data.email,
       password: data.password
     })
   }).then(async (response) => {

@@ -1,16 +1,14 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { Text, View, Button } from 'react-native'
 import * as React from 'react'
-import * as App from '../../App'
-import { URLAPI } from '../global/constants'
 import { styles } from '../styles/SignUpScreenStyles'
-import TextInputSigns from './atoms/SignsScreens/TextInputSigns'
+import RCTextInput from '../components/Global/Inputs/RCTextInput'
 import { checkIfValidPseudo } from '../api/randomCityApi/authentification/SignUpApi'
 
 function SignUpScreen () {
   const [mail, setMail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [confirmPass, setConfirmPass] = React.useState('')
-  const [validPass, setValidPass] = React.useState(true)
+  const [validPass] = React.useState(true)
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
   const [pseudo, setPseudo] = React.useState('')
@@ -18,37 +16,37 @@ function SignUpScreen () {
 
   return (
     <View style={styles.formView}>
-      <TextInputSigns
+      <RCTextInput
         placeholder='Mail'
         value={mail}
         onChangeText={setMail}
       />
-      <TextInputSigns
+      <RCTextInput
         placeholder='Password'
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         style={!validPass ? styles.invalidInput : null}
       />
-      <TextInputSigns
+      <RCTextInput
         placeholder='Confirm password'
         value={confirmPass}
         onChangeText={setConfirmPass}
         secureTextEntry
       />
-      <TextInputSigns
+      <RCTextInput
         placeholder='First name'
         value={firstName}
         onChangeText={setFirstName}
       />
-      <TextInputSigns
+      <RCTextInput
         placeholder='Last name'
         value={lastName}
         onChangeText={setLastName}
       />
 
       <View>
-        <TextInputSigns
+        <RCTextInput
           placeholder='Pseudo'
           value={pseudo}
           onChangeText={(pseudo) => {

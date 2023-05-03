@@ -1,7 +1,7 @@
 import { URLAPI } from '../../../global/constants'
 import { GetValueFor } from '../../../Storage'
 
-export async function startGameSession (distanceMin, distanceMax) {
+export async function startGameSession (distanceMin, distanceMax, location) {
   const userToken = GetValueFor('userToken')
 
   return fetch(URLAPI + '/game_session/start?latitude=' + location.latitude + '&longitude=' + location.longitude + '&distanceMin=' + distanceMin + '&distanceMax=' + distanceMax, {

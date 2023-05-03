@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { signIn } from '../api/randomCityApi/authentification/SignInApi'
-import { GetValueFor, Save } from '../Storage'
+import { DeleteValueFor, GetValueFor, Save } from '../Storage'
+import jwt_decode from 'jwt-decode'
 
 const AuthContext = createContext()
 
@@ -40,12 +41,10 @@ const AuthContextFactory = (dispatch) => ({
   login: async (credentials) => {
     try {
       const result = signIn(credentials).then((result) => {
-        console.log(result)
-        if (result && result.data && result.data.login) {
-          const { data: { login } } = result
+        if (result && result.auth_token && result.user) {
           dispatch({
             type: actionTypes.LOGIN_SUCCESS,
-            data: { user: login.user, token: login.jwt }
+            data: { user: result.user, token: result.jwt }
           })
         }
       })
@@ -58,7 +57,7 @@ const AuthContextFactory = (dispatch) => ({
     }
   },
   logout: () => {
-    dispatch({ type: actionTypes.LOGOUT })
+    DeleteValueFor('AUTH').then(() => dispatch({ type: actionTypes.LOGOUT }))
   }
 })
 
@@ -68,7 +67,6 @@ const AuthProvider = ({ children }) => {
       try {
         const savedState = await GetValueFor('AUTH')
         const _initialState = savedState ? JSON.parse(savedState) : initialState
-        dispatch({ type: 'RESET', payload: _initialState })
       } catch (error) {
         console.log(error)
       }
