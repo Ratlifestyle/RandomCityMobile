@@ -30,7 +30,7 @@ function SignInScreen ({ navigation }) {
   }
 
   return (
-    <View style={styles.formView}>
+    <View>
       <Formik
         validationSchema={loginValidationSchema}
         initialValues={
@@ -52,7 +52,7 @@ function SignInScreen ({ navigation }) {
               keyboardType='email-address'
             />
             {errors.email &&
-              <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
+              <Text>{errors.email}</Text>}
             <RCTextInput
               placeholder='password'
               onChangeText={handleChange('password')}

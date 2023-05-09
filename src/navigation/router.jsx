@@ -14,7 +14,6 @@ const Router = () => {
   const { state: { isLoggedIn } } = useAuth()
   const Stack = createNativeStackNavigator()
   const Tab = createBottomTabNavigator()
-
   return (
     <NavigationContainer>
       {!isLoggedIn
@@ -23,7 +22,7 @@ const Router = () => {
             <Stack.Screen name='SignIn' component={SignInScreen} />
             <Stack.Screen name='SignUp' component={SignUpScreen} />
           </Stack.Navigator>
-          )
+        )
         : (
           <Tab.Navigator>
             <Tab.Screen name='GameStart' component={GameStart} />
@@ -31,10 +30,10 @@ const Router = () => {
             <Tab.Screen name='Success' component={Success} />
             <Tab.Screen name='Options' component={Options} />
           </Tab.Navigator>
-          )}
+        )}
     </NavigationContainer>
 
   )
 }
 
-export default Router
+export default Router;

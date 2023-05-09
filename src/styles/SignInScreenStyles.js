@@ -11,7 +11,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textInput: {
-    marginTop: '5px',
-    marginBottom: '5px'
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 50,
+    color: 'red'
   }
 })
